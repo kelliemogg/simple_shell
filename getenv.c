@@ -1,6 +1,6 @@
 #include "header.h"
 
-char *_get_env(char *env)
+char **_get_env(char *env)
 {
         int inner;
         int outer;
@@ -26,7 +26,7 @@ char *_get_env(char *env)
         return(NULL);
 }
 
-char *_env_parser(char *name)
+char **_env_parser(char *name)
 {
         int token_inc;
         int tokencount;
@@ -55,5 +55,5 @@ char *_env_parser(char *name)
                         token_inc++;
                 }
         }
-        return (*p);
+        return (p);
 }
