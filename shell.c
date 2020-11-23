@@ -19,7 +19,9 @@ void shell_loop()
 	size_t bufsize = 1;
 	char *prompt = "$ ";
 	int status;
+	char **path_tokens;
 	va_list args_list;
+	char *executable;
 
 	while (1)
 	{
@@ -31,6 +33,8 @@ void shell_loop()
 		if (userinput == -1)
 			break;
 		argv = tokenize(buffer);
+		path_tokens = _get_env("PATH");
+		executable = dir_search(argv, path_tokens);
 		status = function_finder(argv, args_list);
 		status++;
 	}
