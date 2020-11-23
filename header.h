@@ -12,39 +12,34 @@
 #include <strings.h>
 #include <stddef.h>
 
+/* made struct for builtins*/
+
+typedef struct builtins
+{
+	char *argv;
+	int (*func)();
+} builtins;
+
 /* new prototypes associated with test.c */
 
 char **tokenize(char *userinput);
 
 int stringlength(char *s);
 
-void shell_loop(void);
+void shell_loop();
 
 int executor(char **argv);
 
-int function_finder(char **argv);
+int function_finder(char **argv, va_list args_list);
 
-int sh_exit(char **argv);
+int sh_exit();
 
-int sh_help(char **argv);
+int sh_help();
 
-int sh_cd(char **argv);
+int sh_cd (char **argv);
 
-int sh_env(char **argv);
+int sh_env();
 
-char *builtin_args[] = {
-        "cd",
-        "help",
-        "env",
-        "exit"
-};
-
-int (*builtin_func[]) (char **) = {
-        &sh_cd,
-        &sh_help,
-        &sh_env,
-        &sh_exit
-};
 /* new prototypes associated with test.c*/
 
 int _putchar(char c);
@@ -61,7 +56,6 @@ char *_strdup(char *str);
 char *_env_parser(char *name);
 char *_get_env(char *env);
 extern char **environ;
-void create(node **head, node **tail, char **str);
 
 typedef struct commander
 {
