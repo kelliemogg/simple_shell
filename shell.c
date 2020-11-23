@@ -1,9 +1,9 @@
 #include "header.h"
 
 /* edited for unused variables */
-int main()
+int main(int argc, char **argv)
 {
-	shell_loop();
+	shell_loop(argc, argv);
 	return (0);
 }
 
@@ -11,18 +11,22 @@ int main()
 /* to fix munmap_chunk error, I changed the while to just while (1) and took the
    if status == 1 out of the while loop */
 
-void shell_loop()
+void shell_loop(int argc, char **argv)
 {
 	int userinput;
-	char **argv;
 	char *buffer;
 	size_t bufsize = 1;
 	char *prompt = "$ ";
 	int status;
 	char **path_tokens;
 	va_list args_list;
-	char *executable;
 
+	if (argc > 1 && argv[1])
+	{
+		function_finder(argv[1], args_list);
+		path_tokens = _get_env("PATH");
+		dir_search(argv, path_tokens);
+	}
 	while (1)
 	{
 		buffer = malloc(sizeof(char) * bufsize);
@@ -33,9 +37,9 @@ void shell_loop()
 		if (userinput == -1)
 			break;
 		argv = tokenize(buffer);
+		status = function_finder(argv[0], args_list);
 		path_tokens = _get_env("PATH");
-		executable = dir_search(argv, path_tokens);
-		status = function_finder(argv, args_list);
+		dir_search(argv, path_tokens);
 		status++;
 	}
 	/* if (status == 1)
@@ -123,7 +127,7 @@ int (*builtin_func[]) (char **) = {
 /* I could not for the life of me get it to compile using strcmp,
    the arguments did not please gcc, which is why I tried the va_list */
 
-int function_finder(char **argv, va_list args_list)
+int function_finder(char *argv, va_list args_list)
 {
 	int i;
 
@@ -135,18 +139,18 @@ int function_finder(char **argv, va_list args_list)
 		{'\0', NULL}
 	};
 
-	if (argv[0] != NULL)
+	if (argv != NULL)
 	{
 		for (i = 0; arr[i].func; i++)
 		{
-                        if (arr[i].argv == argv[0])
+                        if (arr[i].argv == argv)
 			{
 				return (arr[i].func(args_list));
 			}/*(_strcmp(argv[0], builtin_args[i]) == 0)
 			     return ((*builtin_func[i])(argv));*/
 			else
 			{
-				return (executor(argv));
+				return(0);
 			}
 		}
 	}

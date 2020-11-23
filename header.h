@@ -31,11 +31,11 @@ char **tokenize(char *userinput);
 
 int stringlength(char *s);
 
-void shell_loop(void);
+void shell_loop(int argc, char **argv);
 
 int executor(char **argv);
 
-int function_finder(char **argv, va_list args_list);
+int function_finder(char *argv, va_list args_list);
 
 int sh_exit(void);
 
