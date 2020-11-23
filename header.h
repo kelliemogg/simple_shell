@@ -45,6 +45,7 @@ int (*builtin_func[]) (char **) = {
         &sh_env,
         &sh_exit
 };
+
 /* new prototypes associated with test.c*/
 
 int _putchar(char c);
@@ -61,7 +62,6 @@ char *_strdup(char *str);
 char *_env_parser(char *name);
 char *_get_env(char *env);
 extern char **environ;
-void create(node **head, node **tail, char **str);
 
 typedef struct commander
 {
