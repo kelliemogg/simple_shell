@@ -18,7 +18,7 @@ char *_get_env(char *env)
                                 if (env[inner + 1] == '\0' && environ[outer][inner + 1] == '=')
                                 {
                                         name = _strdup(&(environ[outer][inner + 2]));
-                                        _env_parser(name);
+                                        return(_env_parser(name));
                                 }
                         }
                 }
