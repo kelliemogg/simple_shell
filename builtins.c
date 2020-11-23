@@ -1,11 +1,13 @@
 #include "header.h"
 
-int sh_exit(char **argv)
+/* Edited to be able to compile - problem: unused variables */
+
+int sh_exit()
 {
         return (0);
 }
 
-int sh_env(char **argv)
+int sh_env()
 {
         int i;
         int j;
@@ -35,7 +37,7 @@ int sh_cd(char **argv)
         }
 	return (1);
 }
-int sh_help(char **argv)
+int sh_help()
 {
 
         printf("This is Tyler McClure and Kellie Mogg's Simmple Shell\n");

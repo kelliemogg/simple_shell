@@ -1,23 +1,27 @@
 #include "header.h"
 
-
-int main(int argc, char **argv)
+/* edited for unused variables */
+int main()
 {
         shell_loop();
 	return (0);
 }
 
+/* added va_list to manage builtins */
+/* to fix munmap_chunk error, I changed the while to just while (1) and took the
+   if status == 1 out of the while loop */
 
-void shell_loop(void)
+void shell_loop()
 {
         int userinput;
-        char **argv;
+	char **argv;
         char *buffer;
         size_t bufsize = 1;
         char *prompt = "& ";
-        int status;
+	int status;
+	va_list args_list;
 
-        while (status == 1)
+        while (1)
         {
                 buffer = malloc(sizeof(char) * bufsize);
                 if (buffer == NULL)
@@ -27,10 +31,11 @@ void shell_loop(void)
                 if (userinput == -1)
                         break;
                 argv = tokenize(buffer);
-                status = function_finder(argv);
-                if (status == 0)
-                        break;
-        }
+                status = function_finder(argv, args_list);
+		status++;
+	}
+	/* if (status == 1)
+	   break; */
 	free(buffer);
 	free(argv);
 }
@@ -89,19 +94,58 @@ int executor(char **argv)
 	return (1);
 }
 
+/* move these to this file to manage one error,
+then turned them into just one array found in the
+function_finder to solve a different error */
+/*
+ char *builtin_args[] = {
+        "cd",
+        "help",
+        "env",
+        "exit"
+};
 
-int function_finder(char **argv)
+int (*builtin_func[]) (char **) = {
+        &sh_cd,
+        &sh_help,
+        &sh_env,
+        &sh_exit
+	}; */
+
+
+/*made the builtins arrays a single array and moved it into the function
+  to avoid errors */
+
+
+/* I could not for the life of me get it to compile using strcmp,
+   the arguments did not please gcc, which is why I tried the va_list */
+
+int function_finder(char **argv, va_list args_list)
 {
         int i;
 
+	builtins arr[] = {
+		{"cd", sh_cd},
+		{"help", sh_help},
+		{"env", sh_env},
+		{"exit", sh_exit},
+		{'\0', NULL}
+	};
+
         if (argv[0] != NULL)
         {
-                for (i = 0; i < 4; i++)
+                for (i = 0; arr[i].func; i++)
                 {
-                        if (_strcmp(argv[0], builtin_args[i]) == 0)
-                                return ((*builtin_func[i])(argv));
-                }
-        }
-        else
-                return (executor(argv));
+                        if (arr[i].argv == argv[0])
+			{
+				return (arr[i].func(args_list));
+			}/*(_strcmp(argv[0], builtin_args[i]) == 0)
+			     return ((*builtin_func[i])(argv));*/
+			else
+			{
+				return (executor(argv));
+			}
+		}
+	}
+	return (0);
 }

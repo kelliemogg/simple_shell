@@ -5,7 +5,6 @@ char *_get_env(char *env)
         int inner;
         int outer;
         char *name;
-        char *parse;
 
         for (outer = 0; environ[outer] != NULL; outer++)
         {
