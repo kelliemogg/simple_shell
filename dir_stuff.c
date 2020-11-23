@@ -6,7 +6,9 @@ char *dir_search(char **argv, char **path_tokens)
         DIR *deer;
         int i;
         char *asdf;
+	char *store;
 
+printf("asdfs\n");
         for (i = 0; path_tokens[i] != '\0'; i++)
         {
                 deer = opendir(path_tokens[i]);
@@ -14,22 +16,24 @@ char *dir_search(char **argv, char **path_tokens)
                 {
 			if (_strcmp(argv[0], dir_store->d_name) == 0)
 			{
+printf("sffsgf\n");
 				asdf = path_tokens[i];
-				return (executable_maker(asdf, argv));
+				store = executable_maker(asdf, argv);
 			}
                 }
         }
 /*error for command not found*/
-	return(0);
+printf("%s\n", store);
+return(store);
 }
 char *executable_maker(char *asdf, char **argv)
 {
+printf("%s\n", asdf);
 	_strcat(asdf, "/");
+printf("%s\n", asdf);
 	_strcat(asdf, argv[0]);
-	return (asdf);
-	/* printf("%s\n", executable); */
-
-	/*addslash = _strcat(slash, argv[0]);*/
+printf("%s\n", asdf);
+return (asdf);
 }
 /**
 *_strcat- entry point
@@ -45,10 +49,10 @@ char *_strcat(char *dest, char *src)
 	for (i = 0; dest[i] != '\0'; i++)
 	{
 	}
-	for (j = 0; src[j] != '\0'; i++, j++)
+	for (j = 0; src[j] != '\0'; j++)
 	{
-		dest[i] = src[j];
+		dest[i +j] = src[j];
 	}
-dest[i + 1] = '\0';
+dest[i + j] = '\0';
 return (dest);
 }

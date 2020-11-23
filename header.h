@@ -31,9 +31,9 @@ char **tokenize(char *userinput);
 
 int stringlength(char *s);
 
-void shell_loop(int argc, char **argv);
+int shell_loop(int argc, char **argv);
 
-int executor(char **argv);
+int executor(char *asdf, char **argv);
 
 int function_finder(char *argv, va_list args_list);
 
