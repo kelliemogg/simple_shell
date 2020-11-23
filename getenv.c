@@ -1,6 +1,6 @@
 #include "header.h"
 
-char *_get_env(char *env)
+char **_get_env(char *env)
 {
         int inner;
         int outer;
@@ -10,7 +10,6 @@ char *_get_env(char *env)
         {
                 for (inner = 0; environ[outer][inner] != '='; inner++)
                 {
-                        /* printf("%c", environ[outer][inner]); */
                         if (environ[outer][inner] != env[inner])
                                 break;
                         if (environ[outer][inner] == env[inner])
@@ -26,7 +25,7 @@ char *_get_env(char *env)
         return(NULL);
 }
 
-char *_env_parser(char *name)
+char **_env_parser(char *name)
 {
         int token_inc;
         int tokencount;
@@ -51,9 +50,8 @@ char *_env_parser(char *name)
                 {
                         p[token_inc] = tokenize;
                         tokenize = strtok(NULL, ":");
-                        printf("%s\n", p[token_inc]);
                         token_inc++;
                 }
         }
-        return (*p);
+        return (p);
 }
