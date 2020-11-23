@@ -8,7 +8,7 @@
 
 int sh_exit(void)
 {
-	return (0);
+	exit(1);
 }
 
 /**

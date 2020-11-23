@@ -11,21 +11,23 @@ int main(int argc, char **argv)
 /* to fix munmap_chunk error, I changed the while to just while (1) and took the
    if status == 1 out of the while loop */
 
-void shell_loop(int argc, char **argv)
+int shell_loop(int argc, char **argv)
 {
 	int userinput;
 	char *buffer;
 	size_t bufsize = 1;
 	char *prompt = "$ ";
-	int status;
 	char **path_tokens;
+	char *executable;
 	va_list args_list;
 
 	if (argc > 1 && argv[1])
 	{
 		function_finder(argv[1], args_list);
 		path_tokens = _get_env("PATH");
-		dir_search(argv, path_tokens);
+		executable = dir_search(argv, path_tokens);
+		executor(executable, argv);
+		return (0);
 	}
 	while (1)
 	{
@@ -37,15 +39,17 @@ void shell_loop(int argc, char **argv)
 		if (userinput == -1)
 			break;
 		argv = tokenize(buffer);
-		status = function_finder(argv[0], args_list);
+		function_finder(argv[0], args_list);
 		path_tokens = _get_env("PATH");
-		dir_search(argv, path_tokens);
-		status++;
+		executable = dir_search(argv, path_tokens);
+printf("%s\n", executable);
+		/*executor(executable, argv);*/
 	}
 	/* if (status == 1)
 	   break; */
 	free(buffer);
 	free(argv);
+return (0);
 }
 
 
@@ -83,7 +87,7 @@ char **tokenize(char *userinput)
 
 
 
-int executor(char **argv)
+int executor(char *asdf, char **argv)
 {
 	pid_t child_pid;
 
@@ -92,7 +96,7 @@ int executor(char **argv)
 		perror("Fork failure\n");
 	if (child_pid == 0)
 	{
-		execve(argv[0], argv, NULL);
+		execve(asdf, argv, NULL);
 	}
 	else
 	{
