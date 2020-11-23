@@ -3,7 +3,7 @@
 /* edited for unused variables */
 int main()
 {
-        shell_loop();
+	shell_loop();
 	return (0);
 }
 
@@ -13,25 +13,25 @@ int main()
 
 void shell_loop()
 {
-        int userinput;
+	int userinput;
 	char **argv;
-        char *buffer;
-        size_t bufsize = 1;
-        char *prompt = "& ";
+	char *buffer;
+	size_t bufsize = 1;
+	char *prompt = "$ ";
 	int status;
 	va_list args_list;
 
-        while (1)
-        {
-                buffer = malloc(sizeof(char) * bufsize);
-                if (buffer == NULL)
-                        perror("Malloc failure\n");
-                write(STDOUT_FILENO, prompt, stringlength(prompt));
-                userinput = getline(&buffer, &bufsize, stdin);
-                if (userinput == -1)
-                        break;
-                argv = tokenize(buffer);
-                status = function_finder(argv, args_list);
+	while (1)
+	{
+		buffer = malloc(sizeof(char) * bufsize);
+		if (buffer == NULL)
+			perror("Malloc failure\n");
+		write(STDOUT_FILENO, prompt, stringlength(prompt));
+		userinput = getline(&buffer, &bufsize, stdin);
+		if (userinput == -1)
+			break;
+		argv = tokenize(buffer);
+		status = function_finder(argv, args_list);
 		status++;
 	}
 	/* if (status == 1)
@@ -41,16 +41,15 @@ void shell_loop()
 }
 
 
-
 char **tokenize(char *userinput)
 {
-        int token_inc = 0;
-        char *tokenize;
-        char **argv;
-        int tokencount = 0;
-        int i;
+	int token_inc = 0;
+	char *tokenize;
+	char **argv;
+	int tokencount = 0;
+	int i;
 
-        strtok(userinput, "\n");
+	strtok(userinput, "\n");
 	for (i = 0; userinput[i] != '\0'; i++)
 	{
 		if (userinput[i] == ' ')
@@ -67,7 +66,6 @@ char **tokenize(char *userinput)
 		{
 			argv[token_inc] = tokenize;
 			tokenize = strtok(NULL, " ");
-			printf("%s\n", argv[token_inc]);
 			token_inc++;
 		}
 		argv[token_inc] = NULL;
@@ -79,19 +77,19 @@ char **tokenize(char *userinput)
 
 int executor(char **argv)
 {
-        pid_t child_pid;
+	pid_t child_pid;
 
-        child_pid = fork();
-        if (child_pid == -1)
-                perror("Fork failure\n");
-        if (child_pid == 0)
-        {
-                execve(argv[0], argv, NULL);
-        }
-        else
-        {
-                wait(NULL);
-        }
+	child_pid = fork();
+	if (child_pid == -1)
+		perror("Fork failure\n");
+	if (child_pid == 0)
+	{
+		execve(argv[0], argv, NULL);
+	}
+	else
+	{
+		wait(NULL);
+	}
 	return (1);
 }
 
@@ -123,7 +121,7 @@ int (*builtin_func[]) (char **) = {
 
 int function_finder(char **argv, va_list args_list)
 {
-        int i;
+	int i;
 
 	builtins arr[] = {
 		{"cd", sh_cd},
@@ -133,10 +131,10 @@ int function_finder(char **argv, va_list args_list)
 		{'\0', NULL}
 	};
 
-        if (argv[0] != NULL)
-        {
-                for (i = 0; arr[i].func; i++)
-                {
+	if (argv[0] != NULL)
+	{
+		for (i = 0; arr[i].func; i++)
+		{
                         if (arr[i].argv == argv[0])
 			{
 				return (arr[i].func(args_list));
