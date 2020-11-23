@@ -11,6 +11,7 @@
 #include <errno.h>
 #include <strings.h>
 #include <stddef.h>
+#include <dirent.h>
 
 /**
  * struct builtins - struct with builtin commands
@@ -44,6 +45,12 @@ int sh_cd(char **argv);
 
 int sh_env(void);
 
+char *_strcat(char *dest, char *src);
+
+char *dir_search(char **argv, char **path_tokens);
+
+int _strcmp(char *s1, char *s2);
+
 /* new prototypes associated with test.c*/
 
 int _putchar(char c);
@@ -57,8 +64,8 @@ int command_i(void);
 
 /* prototypes for env and parsing env */
 char *_strdup(char *str);
-char *_env_parser(char *name);
-char *_get_env(char *env);
+char **_env_parser(char *name);
+char **_get_env(char *env);
 extern char **environ;
 
 #endif /* HEADER_H */
