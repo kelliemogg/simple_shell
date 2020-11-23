@@ -58,7 +58,7 @@ char **tokenize(char *userinput)
 			tokencount++;
 		}
 	}
-	argv = malloc(8 * (tokencount + 2));
+	argv = malloc(8 *(tokencount + 2));
 	if (argv != NULL)
 	{
 		token_inc = 0;
@@ -70,6 +70,7 @@ char **tokenize(char *userinput)
 			printf("%s\n", argv[token_inc]);
 			token_inc++;
 		}
+		argv[token_inc] = NULL;
 	}
 	return (argv);
 }
