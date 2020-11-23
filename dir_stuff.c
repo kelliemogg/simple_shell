@@ -1,4 +1,5 @@
 #include "header.h"
+
 char *dir_search(char **argv, char **path_tokens)
 {
         struct dirent *dir_store;
@@ -19,16 +20,14 @@ char *dir_search(char **argv, char **path_tokens)
                 }
         }
 /*error for command not found*/
-return (asdf);
+	return(0);
 }
 char *executable_maker(char *asdf, char **argv)
 {
-	char *executable;
-	char *addslash;
-
-	addslash = _strcat(asdf, "/");
-	executable = _strcat(asdf, argv[0]);
-printf("%s\n", executable);
+	_strcat(asdf, "/");
+	_strcat(asdf, argv[0]);
+	return (asdf);
+	/* printf("%s\n", executable); */
 
 	/*addslash = _strcat(slash, argv[0]);*/
 }

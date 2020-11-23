@@ -51,7 +51,6 @@ char **_env_parser(char *name)
                 {
                         p[token_inc] = tokenize;
                         tokenize = strtok(NULL, ":");
-                        printf("%s\n", p[token_inc]);
                         token_inc++;
                 }
         }
