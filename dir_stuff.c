@@ -3,24 +3,34 @@ char *dir_search(char **argv, char **path_tokens)
 {
         struct dirent *dir_store;
         DIR *deer;
-        const char *cast;
         int i;
         char *asdf;
 
         for (i = 0; path_tokens[i] != '\0'; i++)
         {
-                cast = path_tokens[i];
-                deer = opendir(cast);
+                deer = opendir(path_tokens[i]);
                 while ((dir_store = readdir(deer)) != NULL)
                 {
 			if (_strcmp(argv[0], dir_store->d_name) == 0)
 			{
-				asdf = (_strcat(path_tokens[i], argv[0]));
-				printf("%s\n", asdf);
+				asdf = path_tokens[i];
+				return (executable_maker(asdf, argv));
 			}
                 }
         }
+/*error for command not found*/
 return (asdf);
+}
+char *executable_maker(char *asdf, char **argv)
+{
+	char *executable;
+	char *addslash;
+
+	addslash = _strcat(asdf, "/");
+	executable = _strcat(asdf, argv[0]);
+printf("%s\n", executable);
+
+	/*addslash = _strcat(slash, argv[0]);*/
 }
 /**
 *_strcat- entry point

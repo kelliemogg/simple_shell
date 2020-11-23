@@ -51,6 +51,8 @@ char *dir_search(char **argv, char **path_tokens);
 
 int _strcmp(char *s1, char *s2);
 
+char *executable_maker(char *asdf, char **argv);
+
 /* new prototypes associated with test.c*/
 
 int _putchar(char c);
