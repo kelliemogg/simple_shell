@@ -6,9 +6,9 @@
 **/
 char **_get_env(char *env)
 {
-int inner;
-int outer;
-char *name;
+	int inner;
+	int outer;
+	char *name;
 
 	for (outer = 0; environ[outer] != NULL; outer++)
 	{
@@ -23,23 +23,25 @@ char *name;
 					name = _strdup(&(environ[outer][inner + 2]));
 					return (_env_parser(name));
 				}
-			{
+			}
 		}
 	}
-return (NULL);
+	return (NULL);
 }
+
 /**
  * _env_parser- tokenizes the PATH
  * @name: the full PATH seperated by :'s
  * Return: an array of strings
 **/
+
 char **_env_parser(char *name)
 {
-int token_inc;
-int tokencount;
-char *tokenize;
-int i;
-char **p;
+	int token_inc;
+	int tokencount;
+	char *tokenize;
+	int i;
+	char **p;
 
 	tokencount = 0;
 	for (i = 0; name[i] != '\0'; i++)
@@ -61,5 +63,5 @@ char **p;
 			token_inc++;
 		}
 	}
-return (p);
+	return (p);
 }

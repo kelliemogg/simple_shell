@@ -1,15 +1,25 @@
 #include "header.h"
 
-/* edited for unused variables */
+/**
+ * main - main
+ * description: main
+ * @argc: argc
+ * @argv: argv
+ * Return: 0
+ */
 int main(int argc, char **argv)
 {
 	shell_loop(argc, argv);
 	return (0);
 }
 
-/* added va_list to manage builtins */
-/* to fix munmap_chunk error, I changed the while to just while (1) and took the
-   if status == 1 out of the while loop */
+/**
+ * shell_loop - shell loop
+ * description: shell loop
+ * @argc: argc
+ * @argv: argv
+ * Return: 0
+ */
 
 int shell_loop(int argc, char **argv)
 {
@@ -31,24 +41,28 @@ int shell_loop(int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 		{
 			write(STDOUT_FILENO, prompt, stringlength(prompt));
-			userinput = getline(&buffer, &bufsize, stdin);
-			if (userinput == -1)
-				break;
-			argv = tokenize(buffer);
-			function_finder(argv[0], args_list);
-			path_tokens = _get_env("PATH");
-			executable = dir_search(argv, path_tokens);
-			executor(executable, argv);
-		/*executor(executable, argv);*/
 		}
-	/* if (status == 1)
-	   break; */
+		userinput = getline(&buffer, &bufsize, stdin);
+		if (userinput == -1)
+			break;
+		argv = tokenize(buffer);
+		function_finder(argv[0], args_list);
+		path_tokens = _get_env("PATH");
+		executable = dir_search(argv, path_tokens);
+		executor(executable, argv);
+		/*executor(executable, argv);*/
 	}
 	free(buffer);
 	free(argv);
 return (0);
 }
 
+/**
+ * tokenize - tokenize
+ * description: tokenize
+ * @userinput: userinput
+ * Return: 0
+ */
 
 char **tokenize(char *userinput)
 {
@@ -66,7 +80,7 @@ char **tokenize(char *userinput)
 			tokencount++;
 		}
 	}
-	argv = malloc(8 *(tokencount + 2));
+	argv = malloc(8 * (tokencount + 2));
 	if (argv != NULL)
 	{
 		token_inc = 0;
@@ -82,7 +96,13 @@ char **tokenize(char *userinput)
 	return (argv);
 }
 
-
+/**
+ * executor - executor
+ * description: exe
+ * @asdf: asdf
+ * @argv: argv
+ * Return: 0
+ */
 
 int executor(char *asdf, char **argv)
 {
@@ -102,56 +122,36 @@ int executor(char *asdf, char **argv)
 	return (1);
 }
 
-/* move these to this file to manage one error,
-then turned them into just one array found in the
-function_finder to solve a different error */
-/*
- char *builtin_args[] = {
-        "cd",
-        "help",
-        "env",
-        "exit"
-};
 
-int (*builtin_func[]) (char **) = {
-        &sh_cd,
-        &sh_help,
-        &sh_env,
-        &sh_exit
-	}; */
-
-
-/*made the builtins arrays a single array and moved it into the function
-  to avoid errors */
-
-
-/* I could not for the life of me get it to compile using strcmp,
-   the arguments did not please gcc, which is why I tried the va_list */
+/**
+ * function_finder - for builtins
+ * description: find da builtins
+ * @argv: argv
+ * @args_list: args_list
+ * Return: 0
+ */
 
 int function_finder(char *argv, va_list args_list)
 {
 	int i;
 
 	builtins arr[] = {
-		{"cd", sh_cd},
-		{"help", sh_help},
+		/*{"cd", sh_cd},*/
+		/*{"help", sh_help},*/
 		{"env", sh_env},
 		{"exit", sh_exit},
 		{'\0', NULL}
 	};
 
+	(void) args_list;
+
 	if (argv != NULL)
 	{
 		for (i = 0; arr[i].func; i++)
 		{
-                        if (arr[i].argv == argv)
+			if (_strcmp(argv, arr[i].argv) == 0)
 			{
-				return (arr[i].func(args_list));
-			}/*(_strcmp(argv[0], builtin_args[i]) == 0)
-			     return ((*builtin_func[i])(argv));*/
-			else
-			{
-				return(0);
+				arr[i].func();
 			}
 		}
 	}
