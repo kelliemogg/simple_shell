@@ -54,6 +54,8 @@ int _strcmp(char *s1, char *s2);
 
 char *executable_maker(char *asdf, char **argv);
 
+void dubbie_free(char **dubbie_pointie);
+
 /* new prototypes associated with test.c*/
 
 int _putchar(char c);
