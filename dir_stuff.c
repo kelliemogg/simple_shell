@@ -8,7 +8,6 @@ char *dir_search(char **argv, char **path_tokens)
         char *asdf;
 	char *store;
 
-printf("asdfs\n");
         for (i = 0; path_tokens[i] != '\0'; i++)
         {
                 deer = opendir(path_tokens[i]);
@@ -16,23 +15,19 @@ printf("asdfs\n");
                 {
 			if (_strcmp(argv[0], dir_store->d_name) == 0)
 			{
-printf("sffsgf\n");
 				asdf = path_tokens[i];
 				store = executable_maker(asdf, argv);
+				return(store);
+printf("%s\n", store);
 			}
                 }
         }
-/*error for command not found*/
-printf("%s\n", store);
-return(store);
+return("fart");
 }
 char *executable_maker(char *asdf, char **argv)
 {
-printf("%s\n", asdf);
 	_strcat(asdf, "/");
-printf("%s\n", asdf);
 	_strcat(asdf, argv[0]);
-printf("%s\n", asdf);
 return (asdf);
 }
 /**
