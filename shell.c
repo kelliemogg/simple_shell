@@ -25,11 +25,11 @@ int main(int argc, char **argv)
 int shell_loop(int argc, char **argv)
 {
 	int userinput;
-	char *buffer;
+	char *buffer = NULL;
 	size_t bufsize;
 	char *prompt = "$ ";
-	char **path_tokens;
-	char *executable;
+	char **path_tokens = NULL;
+	char *executable = NULL;
 	va_list args_list;
 
 	(void) argc;
@@ -72,8 +72,8 @@ return (0);
 char **tokenize(char *userinput)
 {
 	int token_inc = 0;
-	char *tokenize;
-	char **argv;
+	char *tokenize = NULL;
+	char **argv = NULL;
 	int tokencount = 0;
 	int i;
 

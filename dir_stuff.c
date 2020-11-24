@@ -8,10 +8,10 @@
 char *dir_search(char **argv, char **path_tokens)
 {
 	struct dirent *dir_store;
-	DIR *deer;
+	DIR *deer = NULL;
 	int i;
-	char *asdf;
-	char *store;
+	char *asdf = NULL;
+	char *store = NULL;
 
 	for (i = 0; path_tokens[i] != '\0'; i++)
 	{
@@ -28,7 +28,7 @@ char *dir_search(char **argv, char **path_tokens)
 		}
 	closedir(deer);
 	}
-	free(path_tokens);
+	/* free(path_tokens); */
 	return (NULL);
 }
 /**
