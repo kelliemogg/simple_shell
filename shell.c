@@ -21,32 +21,29 @@ int shell_loop(int argc, char **argv)
 	char *executable;
 	va_list args_list;
 
-	if (argc > 1 && argv[1])
-	{
-		function_finder(argv[1], args_list);
-		path_tokens = _get_env("PATH");
-		executable = dir_search(argv, path_tokens);
-		executor(executable, argv);
-		return (0);
-	}
+	(void) argc;
+
 	while (1)
 	{
 		buffer = malloc(sizeof(char) * bufsize);
 		if (buffer == NULL)
 			perror("Malloc failure\n");
-		write(STDOUT_FILENO, prompt, stringlength(prompt));
-		userinput = getline(&buffer, &bufsize, stdin);
-		if (userinput == -1)
-			break;
-		argv = tokenize(buffer);
-		function_finder(argv[0], args_list);
-		path_tokens = _get_env("PATH");
-		executable = dir_search(argv, path_tokens);
-printf("%s\n", executable);
+		if (isatty(STDIN_FILENO))
+		{
+			write(STDOUT_FILENO, prompt, stringlength(prompt));
+			userinput = getline(&buffer, &bufsize, stdin);
+			if (userinput == -1)
+				break;
+			argv = tokenize(buffer);
+			function_finder(argv[0], args_list);
+			path_tokens = _get_env("PATH");
+			executable = dir_search(argv, path_tokens);
+			printf("%s\n", executable);
 		/*executor(executable, argv);*/
-	}
+		}
 	/* if (status == 1)
 	   break; */
+	}
 	free(buffer);
 	free(argv);
 return (0);
