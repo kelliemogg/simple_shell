@@ -1,7 +1,7 @@
 #include "header.h"
 
 /**
- * sh_exit - this exits the func
+ * sh_exit - this exits the shell
  * description: exit builtin
  * Return: 0
  */
@@ -53,10 +53,9 @@ int sh_cd(char **argv)
 	return (1);
 }
 /**
- * sh_cd - changes directory
- * description: this is change dir
- * @argv: arg passed
- * Return: 0
+ * sh_help - prints the help page
+ * description: see above
+ * Return: void
  */
 
 int sh_help(void)
