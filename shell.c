@@ -38,7 +38,7 @@ int shell_loop(int argc, char **argv)
 			function_finder(argv[0], args_list);
 			path_tokens = _get_env("PATH");
 			executable = dir_search(argv, path_tokens);
-			printf("%s\n", executable);
+			executor(executable, argv);
 		/*executor(executable, argv);*/
 		}
 	/* if (status == 1)
