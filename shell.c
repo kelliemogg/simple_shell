@@ -7,6 +7,7 @@
  * @argv: argv
  * Return: 0
  */
+
 int main(int argc, char **argv)
 {
 	shell_loop(argc, argv);
@@ -25,7 +26,7 @@ int shell_loop(int argc, char **argv)
 {
 	int userinput;
 	char *buffer;
-	size_t bufsize = 1;
+	size_t bufsize;
 	char *prompt = "$ ";
 	char **path_tokens;
 	char *executable;
@@ -33,11 +34,12 @@ int shell_loop(int argc, char **argv)
 
 	(void) argc;
 
+	buffer = NULL;
 	while (1)
 	{
-		buffer = malloc(sizeof(char) * bufsize);
+		/* buffer = malloc(sizeof(char) * bufsize);
 		if (buffer == NULL)
-			perror("Malloc failure\n");
+		perror("Malloc failure\n");*/
 		if (isatty(STDIN_FILENO))
 		{
 			write(STDOUT_FILENO, prompt, stringlength(prompt));

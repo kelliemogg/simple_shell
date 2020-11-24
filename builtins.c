@@ -34,4 +34,3 @@ int sh_env(void)
 	}
 	return (1);
 }
-
