@@ -119,7 +119,7 @@ int executor(char *asdf, char **argv)
 		perror("Fork failure\n");
 	if (child_pid == 0)
 	{
-		execve(asdf, argv, NULL);
+		execve(asdf, argv, environ);
 	}
 	else
 	{
