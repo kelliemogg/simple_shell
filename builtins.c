@@ -20,14 +20,12 @@ int sh_env(void)
 {
 	int i;
 	int j;
-	char *string;
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		for (j = 0; environ[i][j] != '\0'; j++)
 		{
-			string = _strdup(&(environ[i][j]));
-			write(STDOUT_FILENO, string, stringlength(string));
+			write(STDOUT_FILENO, (&(environ[i][j])), 1);
 			break;
 		}
 		_putchar('\n');

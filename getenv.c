@@ -42,6 +42,7 @@ char **_env_parser(char *name)
 	char *tokenize;
 	int i;
 	char **p;
+	char *namestore = name;
 
 	tokencount = 0;
 	for (i = 0; name[i] != '\0'; i++)
@@ -58,11 +59,12 @@ char **_env_parser(char *name)
 		tokenize = strtok(name, ":");
 		while (token_inc < (tokencount + 1))
 		{
-			p[token_inc] = tokenize;
+			p[token_inc] =_strdup(tokenize);
 			tokenize = strtok(NULL, ":");
 			token_inc++;
 		}
+	p[token_inc] = NULL;
 	}
-	/*free(name);*/
+	free(namestore);
 	return (p);
 }
