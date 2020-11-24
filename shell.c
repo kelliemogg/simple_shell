@@ -31,7 +31,6 @@ int shell_loop(int argc, char **argv)
 	char **path_tokens;
 	char *executable;
 	va_list args_list;
-	int itr;
 
 	(void) argc;
 
@@ -53,15 +52,11 @@ int shell_loop(int argc, char **argv)
 		path_tokens = _get_env("PATH");
 		executable = dir_search(argv, path_tokens);
 		executor(executable, argv);
-		for (itr = 0; argv[itr] != '\0'; itr++)
-		{
-			free(argv[itr]);
-		}
 		/*free(argv);*/
 		/*executor(executable, argv);*/
 	}
 	free(buffer);
-	free(argv);
+	/*free(argv);*/
 return (0);
 }
 
