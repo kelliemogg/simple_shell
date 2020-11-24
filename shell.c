@@ -55,7 +55,7 @@ int shell_loop(int argc, char **argv)
 		/*executor(executable, argv);*/
 	}
 	free(buffer);
-	free(argv);
+	/* free(argv);*/
 return (0);
 }
 
@@ -95,6 +95,7 @@ char **tokenize(char *userinput)
 		}
 		argv[token_inc] = NULL;
 	}
+	/*free(userinput);*/
 	return (argv);
 }
 
@@ -121,6 +122,7 @@ int executor(char *asdf, char **argv)
 	{
 		wait(NULL);
 	}
+	/*free(argv);*/
 	return (1);
 }
 

@@ -63,5 +63,6 @@ char **_env_parser(char *name)
 			token_inc++;
 		}
 	}
+	/*free(name);*/
 	return (p);
 }

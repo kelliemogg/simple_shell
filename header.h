@@ -12,6 +12,7 @@
 #include <strings.h>
 #include <stddef.h>
 #include <dirent.h>
+#include <signal.h>
 
 /**
  * struct builtins - struct with builtin commands
