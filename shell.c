@@ -48,6 +48,8 @@ int shell_loop(int argc, char **argv)
 		if (userinput == -1)
 			break;
 		argv = tokenize(buffer);
+		if (argv[0] == NULL)
+			continue;
 		function_finder(argv[0], args_list);
 		path_tokens = _get_env("PATH");
 		executable = dir_search(argv, path_tokens);
