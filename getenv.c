@@ -8,7 +8,7 @@ char **_get_env(char *env)
 {
 	int inner;
 	int outer;
-	char *name;
+	char *name = NULL;
 
 	for (outer = 0; environ[outer] != NULL; outer++)
 	{
@@ -39,9 +39,9 @@ char **_env_parser(char *name)
 {
 	int token_inc;
 	int tokencount;
-	char *tokenize;
+	char *tokenize = NULL;
 	int i;
-	char **p;
+	char **p = NULL;
 	char *namestore = name;
 
 	tokencount = 0;

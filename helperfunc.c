@@ -38,7 +38,7 @@ int stringlength(char *s)
 **/
 char *_strdup(char *str)
 {
-	char *duplicate;
+	char *duplicate = NULL;
 	int i;
 	int len = 0;
 
