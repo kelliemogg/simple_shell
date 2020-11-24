@@ -8,7 +8,7 @@
 
 int sh_exit(void)
 {
-	exit(1);
+	exit(0);
 }
 
 /**
@@ -32,5 +32,5 @@ int sh_env(void)
 		}
 		_putchar('\n');
 	}
-	return (1);
+	return (0);
 }

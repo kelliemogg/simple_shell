@@ -31,15 +31,16 @@ int shell_loop(int argc, char **argv)
 	char **path_tokens;
 	char *executable;
 	va_list args_list;
+	int itr;
 
 	(void) argc;
 
 	buffer = NULL;
 	while (1)
 	{
-		/* buffer = malloc(sizeof(char) * bufsize);
-		if (buffer == NULL)
-		perror("Malloc failure\n");*/
+		/* buffer = malloc(sizeof(char) * bufsize);*/
+		   /* if (buffer == NULL) */
+		   /* perror("Malloc failure\n"); */
 		if (isatty(STDIN_FILENO))
 		{
 			write(STDOUT_FILENO, prompt, stringlength(prompt));
@@ -52,10 +53,15 @@ int shell_loop(int argc, char **argv)
 		path_tokens = _get_env("PATH");
 		executable = dir_search(argv, path_tokens);
 		executor(executable, argv);
+		for (itr = 0; argv[itr] != '\0'; itr++)
+		{
+			free(argv[itr]);
+		}
+		/*free(argv);*/
 		/*executor(executable, argv);*/
 	}
 	free(buffer);
-	/* free(argv);*/
+	free(argv);
 return (0);
 }
 
@@ -122,8 +128,8 @@ int executor(char *asdf, char **argv)
 	{
 		wait(NULL);
 	}
-	/*free(argv);*/
-	return (1);
+	free(argv);
+	return (0);
 }
 
 

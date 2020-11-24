@@ -22,6 +22,7 @@ char *dir_search(char **argv, char **path_tokens)
 			{
 				asdf = path_tokens[i];
 				store = executable_maker(asdf, argv);
+				closedir(deer);
 				return (store);
 			}
 		}
