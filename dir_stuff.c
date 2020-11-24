@@ -26,9 +26,10 @@ char *dir_search(char **argv, char **path_tokens)
 				return (store);
 			}
 		}
+	closedir(deer);
 	}
 	free(path_tokens);
-	return (*argv);
+	return (NULL);
 }
 /**
  * executable_maker- modifies argv[0] into an executable

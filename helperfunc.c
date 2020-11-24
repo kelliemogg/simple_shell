@@ -63,3 +63,19 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+/**
+ * dubbie_free - frees double pointers
+ * @dubbie_pointie: a double pointer
+ * Return: void
+**/
+void dubbie_free(char **dubbie_pointie)
+{
+	int i = 0;
+
+	while (dubbie_pointie[i])
+	{
+		free(dubbie_pointie[i]);
+		i++;
+	}
+	free(dubbie_pointie);
+}
