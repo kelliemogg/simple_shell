@@ -53,7 +53,6 @@ int shell_loop(int argc, char **argv)
 		function_finder(argv[0], args_list);
 		path_tokens = _get_env("PATH");
 		executable = dir_search(argv, path_tokens);
-		/*dubbie_free(path_tokens);*/
 		executor(executable, argv);
 		dubbie_free(path_tokens);
 		/*free(argv);*/
