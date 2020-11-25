@@ -153,6 +153,7 @@ int function_finder(char **argv, char *buffer)
 		{"exit", sh_exit},
 		{"setenv", sh_setenv},
 		{"unsetenv", sh_unsetenv},
+		{"alias", sh_alias},
 		{'\0', NULL}
 	};
 
