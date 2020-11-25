@@ -49,7 +49,11 @@ int shell_loop(int argc, char **argv)
 		argv = tokenize(buffer);
 		if (argv[0] == NULL)
 			continue;
-		function_finder(argv, buffer);
+		if (function_finder(argv, buffer) == 1)
+		{
+			free(argv);
+			continue;
+		}
 		path_tokens = _get_env("PATH");
 		executable = dir_search(argv, path_tokens);
 		executor(executable, argv);
@@ -57,7 +61,6 @@ int shell_loop(int argc, char **argv)
 		if (argv[0][0] != '/')
 			free(executable);
 		free(argv);
-		/*executor(executable, argv);*/
 	}
 	free(buffer);
 return (0);
@@ -157,12 +160,14 @@ int function_finder(char **argv, char *buffer)
 		if (_strcmp(argv[0], "exit") == 0)
 		{
 			sh_exit(argv, buffer);
+			return (1);
 		}
 		for (i = 0; arr[i].func; i++)
 		{
 			if (_strcmp(argv[0], arr[i].argv) == 0)
 			{
 				arr[i].func();
+				return (1);
 			}
 		}
 	}
