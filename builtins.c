@@ -39,3 +39,33 @@ int sh_env(void)
 	}
 	return (0);
 }
+/**
+* sh_setenv - sets the env
+* @argv: arguments
+* Return: 0
+*/
+int sh_setenv(char **argv)
+{
+	argv = argv;
+	return (0);
+}
+/**
+* sh_unsetenv - unsets the env
+* @argv: arguments
+* Return: 0
+*/
+int sh_unsetenv(char **argv)
+{
+	argv = argv;
+	return (0);
+}
+/**
+ * sh_cd - changes current directory
+ * @argv: arguments
+ * Return: 0
+**/
+int sh_cd(char **argv)
+{
+	argv = argv;
+	return (0);
+}

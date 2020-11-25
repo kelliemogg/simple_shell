@@ -26,8 +26,6 @@ typedef struct builtins
 	int (*func)();
 } builtins;
 
-/* new prototypes associated with test.c */
-
 char **tokenize(char *userinput);
 
 int stringlength(char *s);
@@ -39,8 +37,6 @@ int executor(char *asdf, char **argv);
 int function_finder(char **argv, char *buffer);
 
 int sh_exit(char **argv, char *buffer);
-
-int sh_help(void);
 
 int sh_cd(char **argv);
 
@@ -56,21 +52,20 @@ char *executable_maker(char *asdf, char **argv);
 
 void dubbie_free(char **dubbie_pointie);
 
-/* new prototypes associated with test.c*/
-
 int _putchar(char c);
-char _strchr(char *s, char c);
-int fork_process(void);
-char *read_line(void);
-char *read_command(void);
-int execute_cmd(char **args);
-void _status_on(void);
-int command_i(void);
 
-/* prototypes for env and parsing env */
+char _strchr(char *s, char c);
+
 char *_strdup(char *str);
+
 char **_env_parser(char *name);
+
 char **_get_env(char *env);
+
 extern char **environ;
+
+int sh_setenv(char **argv);
+
+int sh_unsetenv(char **argv);
 
 #endif /* HEADER_H */
