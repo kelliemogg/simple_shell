@@ -30,7 +30,6 @@ char *dir_search(char **argv, char **path_tokens)
 		}
 	closedir(deer);
 	}
-	/* free(path_tokens); */
 	return (NULL);
 }
 /**
