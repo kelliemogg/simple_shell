@@ -30,7 +30,6 @@ int shell_loop(int argc, char **argv)
 	char *prompt = "$ ";
 	char **path_tokens = NULL;
 	char *executable = NULL;
-	va_list args_list;
 
 	(void) argc;
 
@@ -50,12 +49,14 @@ int shell_loop(int argc, char **argv)
 		argv = tokenize(buffer);
 		if (argv[0] == NULL)
 			continue;
-		function_finder(argv[0], args_list);
+		function_finder(argv, buffer);
 		path_tokens = _get_env("PATH");
 		executable = dir_search(argv, path_tokens);
 		executor(executable, argv);
 		dubbie_free(path_tokens);
-		/*free(argv);*/
+		if (argv[0][0] != '/')
+			free(executable);
+		free(argv);
 		/*executor(executable, argv);*/
 	}
 	free(buffer);
@@ -98,6 +99,7 @@ char **tokenize(char *userinput)
 		}
 		argv[token_inc] = NULL;
 	}
+
 	/*free(userinput);*/
 	return (argv);
 }
@@ -125,7 +127,7 @@ int executor(char *asdf, char **argv)
 	{
 		wait(NULL);
 	}
-	free(argv);
+	/*free(argv);*/
 	return (0);
 }
 
@@ -134,11 +136,11 @@ int executor(char *asdf, char **argv)
  * function_finder - for builtins
  * description: find da builtins
  * @argv: argv
- * @args_list: args_list
+ * @buffer: buffer
  * Return: 0
  */
 
-int function_finder(char *argv, va_list args_list)
+int function_finder(char **argv, char *buffer)
 {
 	int i;
 
@@ -150,13 +152,15 @@ int function_finder(char *argv, va_list args_list)
 		{'\0', NULL}
 	};
 
-	(void) args_list;
-
 	if (argv != NULL)
 	{
+		if (_strcmp(argv[0], "exit") == 0)
+		{
+			sh_exit(argv, buffer);
+		}
 		for (i = 0; arr[i].func; i++)
 		{
-			if (_strcmp(argv, arr[i].argv) == 0)
+			if (_strcmp(argv[0], arr[i].argv) == 0)
 			{
 				arr[i].func();
 			}
