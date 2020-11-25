@@ -68,4 +68,6 @@ int sh_setenv(char **argv);
 
 int sh_unsetenv(char **argv);
 
+int sh_alias(char **argv);
+
 #endif /* HEADER_H */
