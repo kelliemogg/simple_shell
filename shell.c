@@ -148,10 +148,11 @@ int function_finder(char **argv, char *buffer)
 	int i;
 
 	builtins arr[] = {
-		/*{"cd", sh_cd},*/
-		/*{"help", sh_help},*/
+		{"cd", sh_cd},
 		{"env", sh_env},
 		{"exit", sh_exit},
+		{"setenv", sh_setenv},
+		{"unsetenv", sh_unsetenv},
 		{'\0', NULL}
 	};
 
