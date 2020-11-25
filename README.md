@@ -1,12 +1,11 @@
 ## Shellplayground
 We built a simple shell program in C language as students at Holberton Tulsa.
-Our shell will have the same output as /bin/sh.\
+Our shell will have the same output as /bin/sh.
 
 
 ## Motivation
 We are building our shell to deepen our understanding of how the shell reads,
-interprets, and executes commands given by a us\
-er.
+interprets, and executes commands given by a user.
 
 ## Build status :: Features
 Our shell program is a command-line interpreter that takes user input commands
