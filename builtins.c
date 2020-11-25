@@ -3,11 +3,15 @@
 /**
  * sh_exit - this exits the shell
  * description: exit builtin
+ * @argv: argv
+ * @buffer: buffer
  * Return: 0
  */
 
-int sh_exit(void)
+int sh_exit(char **argv, char *buffer)
 {
+	free(argv);
+	free(buffer);
 	exit(0);
 }
 

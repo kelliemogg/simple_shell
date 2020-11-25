@@ -41,9 +41,13 @@ char *dir_search(char **argv, char **path_tokens)
 **/
 char *executable_maker(char *asdf, char **argv)
 {
-	_strcat(asdf, "/");
-	_strcat(asdf, argv[0]);
-return (asdf);
+	char *addslash = NULL;
+	char *newcmd = NULL;
+
+	addslash = _strcat(asdf, "/");
+	newcmd = _strcat(addslash, argv[0]);
+	free(addslash);
+return (newcmd);
 }
 /**
 *_strcat- entry point
@@ -52,17 +56,25 @@ return (asdf);
 *@src: string to be copied
 *Return: dest
 **/
+
 char *_strcat(char *dest, char *src)
 {
-	int i, j;
+	int a, p, x;
+	char *newcmd = NULL;
 
-	for (i = 0; dest[i] != '\0'; i++)
+	for (p = 0; dest[p] != '\0'; p++)
+	{}
+	for (a = 0; src[a] != '\0'; a++)
+	{}
+	newcmd = malloc(sizeof(char) * (a + p + 1));
+	for (x = 0; x < p; x++)
 	{
+		newcmd[x] = dest[x];
 	}
-	for (j = 0; src[j] != '\0'; j++)
+	for (x = 0; x < a; x++)
 	{
-		dest[i + j] = src[j];
+		newcmd[x + p] = src[x];
 	}
-dest[i + j] = '\0';
-return (dest);
+	newcmd[x + p] = '\0';
+	return (newcmd);
 }

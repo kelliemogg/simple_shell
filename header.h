@@ -36,9 +36,9 @@ int shell_loop(int argc, char **argv);
 
 int executor(char *asdf, char **argv);
 
-int function_finder(char *argv, va_list args_list);
+int function_finder(char **argv, char *buffer);
 
-int sh_exit(void);
+int sh_exit(char **argv, char *buffer);
 
 int sh_help(void);
 
