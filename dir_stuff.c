@@ -13,6 +13,8 @@ char *dir_search(char **argv, char **path_tokens)
 	char *asdf = NULL;
 	char *store = NULL;
 
+	if (argv[0][0] == '/')
+		return(argv[0]);
 	for (i = 0; path_tokens[i] != '\0'; i++)
 	{
 		deer = opendir(path_tokens[i]);
