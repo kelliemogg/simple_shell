@@ -21,11 +21,14 @@ int sh_env(void)
 	int i;
 	int j;
 
+	char *string = NULL;
+
 	for (i = 0; environ[i] != NULL; i++)
 	{
 		for (j = 0; environ[i][j] != '\0'; j++)
 		{
-			write(STDOUT_FILENO, (&(environ[i][j])), 1);
+			string = (&(environ[i][j]));
+			write(STDOUT_FILENO, string, stringlength(string));
 			break;
 		}
 		_putchar('\n');
