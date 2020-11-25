@@ -55,6 +55,7 @@ int shell_loop(int argc, char **argv)
 		executable = dir_search(argv, path_tokens);
 		/*dubbie_free(path_tokens);*/
 		executor(executable, argv);
+		dubbie_free(path_tokens);
 		/*free(argv);*/
 		/*executor(executable, argv);*/
 	}
