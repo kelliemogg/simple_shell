@@ -52,14 +52,14 @@ char **_env_parser(char *name)
 			tokencount++;
 		}
 	}
-	p = malloc(8 * (tokencount + 2));
+	p = malloc(sizeof(char *) * (tokencount + 2));
 	if (p != NULL)
 	{
 		token_inc = 0;
 		tokenize = strtok(name, ":");
 		while (token_inc < (tokencount + 1))
 		{
-			p[token_inc] =_strdup(tokenize);
+			p[token_inc] = _strdup(tokenize);
 			tokenize = strtok(NULL, ":");
 			token_inc++;
 		}
