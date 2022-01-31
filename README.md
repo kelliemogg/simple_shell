@@ -2,9 +2,8 @@
 We built a simple shell program in C language as students at Holberton Tulsa.
 Our shell will have the same output as /bin/sh.
 
-Though it's very simple, looking back on this program a year later, I can see 
-how this project set the groundwork for my progress ever since. 
-
+Kellie: Though it's very simple, looking back on this program a year later, I can see 
+how this project set the groundwork for my progress ever since. We made mistakes early on by neglecting to check our memory often enough and because of this error, we of course learned a very valuable lesson about the importance of memory, but also by combing through out program and breaking down every possible route of memory leaks, we got to know our program VERY well. This project was a breakthrough for me personally because it gave me so much reference for all the foundational learning I had done up to this point. 
 
 ## Motivation
 We are building our simple shell to deepen our understanding of how the shell reads,
