@@ -1,6 +1,7 @@
 #include "header.h"
+
 /**
- * _get_env- gets the current env
+ * _get_env - gets the current env
  * @env: the env
  * Return: _env_parser function on success, NULL on failure
 **/
@@ -34,7 +35,6 @@ char **_get_env(char *env)
  * @name: the full PATH seperated by :'s
  * Return: an array of strings
 **/
-
 char **_env_parser(char *name)
 {
 	int token_inc;

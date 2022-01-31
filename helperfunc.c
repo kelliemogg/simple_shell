@@ -1,6 +1,7 @@
 #include "header.h"
+
 /**
- * _strcmp- compares two strings to see if they are the same
+ * _strcmp - compares two strings to see if they are the same
  * @s1: string 1
  * @s2: string 2
  * Return: s1[i] - s2[j] on failure or 0 on success
@@ -18,8 +19,9 @@ int _strcmp(char *s1, char *s2)
 	}
 return (0);
 }
+
 /**
- * stringlength- gets the length of a string
+ * stringlength - gets the length of a string
  * @s: a string
  * Return: length of string
 **/
@@ -31,6 +33,7 @@ int stringlength(char *s)
 	{}
 		return (i);
 }
+
 /**
  * _strdup - duplicates a string
  * @str: string to duplicate
@@ -53,8 +56,9 @@ char *_strdup(char *str)
 		duplicate[i] = str[i];
 return (duplicate);
 }
+
 /**
- * _putchar - writes a char to stdout
+ * _putchar - writes a single character to stdout
  * @c: character to write
  * Return: the character
 **/
@@ -62,6 +66,7 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
 /**
  * dubbie_free - frees double pointers
  * @dubbie_pointie: a double pointer

@@ -1,13 +1,12 @@
 #include "header.h"
 
 /**
- * main - main
+ * main - main function for our simple shell
  * description: main
  * @argc: argc
  * @argv: argv
  * Return: 0
  */
-
 int main(int argc, char **argv)
 {
 	shell_loop(argc, argv);
@@ -15,13 +14,12 @@ int main(int argc, char **argv)
 }
 
 /**
- * shell_loop - shell loop
- * description: shell loop
+ * shell_loop - shell loop to constantly run the shell
+ * description: until the exit command is entered
  * @argc: argc
  * @argv: argv
  * Return: 0
  */
-
 int shell_loop(int argc, char **argv)
 {
 	int userinput;
@@ -67,12 +65,11 @@ return (0);
 }
 
 /**
- * tokenize - tokenize
- * description: tokenize
+ * tokenize - tokenize user input
+ * description: to breakdown command
  * @userinput: userinput
  * Return: 0
  */
-
 char **tokenize(char *userinput)
 {
 	int token_inc = 0;
@@ -108,8 +105,8 @@ char **tokenize(char *userinput)
 }
 
 /**
- * executor - executor
- * description: exe
+ * executor - executes the command given
+ * description: by forking and execing
  * @asdf: asdf
  * @argv: argv
  * Return: 0
@@ -137,12 +134,11 @@ int executor(char *asdf, char **argv)
 
 /**
  * function_finder - for builtins
- * description: find da builtins
+ * description: searches and compares to see if the command is a builtin
  * @argv: argv
  * @buffer: buffer
  * Return: 0
  */
-
 int function_finder(char **argv, char *buffer)
 {
 	int i;

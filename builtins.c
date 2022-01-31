@@ -16,7 +16,7 @@ int sh_exit(char **argv, char *buffer)
 }
 
 /**
- * sh_env - prints the environ
+ * sh_env - prints the environment details
  * description: env builtin
  * Return: 0
  */
@@ -49,6 +49,7 @@ int sh_setenv(char **argv)
 	argv = argv;
 	return (0);
 }
+
 /**
 * sh_unsetenv - unsets the env
 * @argv: arguments
@@ -59,6 +60,7 @@ int sh_unsetenv(char **argv)
 	argv = argv;
 	return (0);
 }
+
 /**
  * sh_cd - changes current directory
  * @argv: arguments
