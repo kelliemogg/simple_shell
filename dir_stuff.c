@@ -32,6 +32,7 @@ char *dir_search(char **argv, char **path_tokens)
 	}
 	return (NULL);
 }
+
 /**
  * executable_maker- modifies argv[0] into an executable
  * @asdf: stores the path of the correct directory
@@ -47,6 +48,7 @@ char *executable_maker(char *asdf, char **argv)
 	newcmd = _strcat(addslash, argv[0]);
 	free(addslash);
 return (newcmd);
+
 }
 /**
 *_strcat- entry point
@@ -55,7 +57,6 @@ return (newcmd);
 *@src: string to be copied
 *Return: dest
 **/
-
 char *_strcat(char *dest, char *src)
 {
 	int a, p, x;
