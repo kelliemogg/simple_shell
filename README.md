@@ -42,9 +42,13 @@ appropriate error.
 
 <img width="748" alt="Code Snippet to display details of the current working environment." src="https://user-images.githubusercontent.com/67158073/151821016-77ae4f29-c3b9-474b-a597-daa29e68b857.png">
 
-This code snippets displays a portion of the details of the current working 
+This code snippet displays a portion of the details of the current working 
 environment of our Simple Shell. The functionality of our command is the same 
 as 'printenv' in bash.
+
+## Authors
+
+##### - Tyler McClure
 
 ##### - Kellie Mogg <a href="https://github.com/kelliemogg">Github</a> | <a href="https://www.linkedin.com/in/kelliemogg/">LinkedIn</a> | <a href="https://twitter.com/KellieMogg">Twitter</a>
 Kellie is studying to be a Web and XR Developer and has a great passion for supporting a small business ecosystem. Though this project is fairly simple, looking back on this program a year later, I can see how this project set the groundwork for my progress ever since.
